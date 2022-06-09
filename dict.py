@@ -1,9 +1,9 @@
 import psycopg2
 conn = psycopg2.connect(
    host="localhost",
-   database="database",
-   user="user",
-   password="abc123"
+   database="dict",
+   user="dict1",
+   password="dict1"
 )
 
 def read_dict(C):
@@ -30,9 +30,9 @@ while True: ## REPL - Read Execute Program Loop
     if cmd == "list":
         print(read_dict(conn))
     elif cmd == "add":
-        name = input("  Word: ")
-        phone = input("  Translation: ")
-        add_word(conn, name, phone)
+        word = input("  Word: ")
+        translation = input("  Translation: ")
+        add_word(conn, word, translation)
     elif cmd == "delete":
         ID = input("  ID: ")
         delete_word(conn, ID)
