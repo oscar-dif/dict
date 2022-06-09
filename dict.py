@@ -56,3 +56,21 @@ main()
             print(f"  Goodbye!")
             exit()
 main()
+    while True: ## REPL - Read Execute Program Loop
+        cmd = input("Command: ")
+        if cmd == "list":
+            for i, wd, trans in read_dict(conn):
+                print(f"{i}: {wd} - {trans}")
+        elif cmd == "add":
+            word = input("  Word: ")
+            translation = input("  Translation: ")
+            add_word(conn, word, translation)
+            print(f"  Added word {word} to dictionary.")
+        elif cmd == "delete":
+            ID = input("  ID: ")
+            delete_word(conn, ID)
+            print(f"  Deleted word with ID {ID}.")
+        elif cmd == "quit":
+            save_dict(conn)
+            print(f"  Goodbye!")
+            exit()
