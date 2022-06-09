@@ -5,6 +5,8 @@ conn = psycopg2.connect(
    user="dict1",
    password="dict1"
 )
+# read_dict: returns the list of all dictionary entries:
+# argument: C - the database connection.
 
 def read_dict(C):
     cur = C.cursor()
@@ -12,14 +14,23 @@ def read_dict(C):
     rows = cur.fetchall()
     cur.close()
     return rows
+
+#add_word: creates a serial and two insert variables 'word' and 'translation' and adds them to the table dictionary
+
 def add_word(C, word, translation):
     cur = C.cursor()
     cur.execute(f"INSERT INTO dictionary (word, translation) VALUES ('{word}', '{translation}');")
     cur.close()
+
+#delete_word deletes the serial which are connected to one variable 'word' and one variable 'translation'
+
 def delete_word(C, ID):
     cur = C.cursor()
     cur.execute(f"DELETE FROM dictionary WHERE id = '{ID}';")
     cur.close()
+
+#save_dict uses the command 'COMMIT' to save possible changes to the database thrue the connection C
+
 def save_dict(C):
     cur = C.cursor()
     cur.execute("COMMIT;")
